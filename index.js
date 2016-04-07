@@ -27,12 +27,9 @@ const rateLimit = require('rate-limit-promise')
 // own
 const utils = require('rollodeqc-gh-utils')
 
-let limiter
-
-module.exports = function (z) {
-  if (!limiter) { module.exports.setLimiter(5, 3600) }
-  return limiter()
-    .then(() => ghGot('users/' + z))
+const getUser = function (username) {
+  console.log(new Date(), username)
+  return ghGot('users/' + username)
     .then((u) => {
       const o = utils.chosenFields(u.body)
       o.headers = utils.chosenHeaders(u.headers)
@@ -40,7 +37,18 @@ module.exports = function (z) {
     })
 }
 
-module.exports.setLimiter = function (c, t) {
-  console.log('setting limiter to', c, t)
-  limiter = rateLimit(c, t)
+let limiter
+
+module.exports = function (username) {
+  console.log(new Date(), 'calling')
+  if (limiter) { return limiter().then(() => getUser(username)) }
+  return utils.rateLimit()
+    .then((rl) => {
+      console.log(new Date(), 'ratelimit')
+      limiter = rateLimit(5, Math.ceil(5 * (1000 * rl.rate.reset - Date.now()) / rl.rate.remaining))
+      return limiter().then(() => getUser(username))
+    })
 }
+
+module.exports.setLimiter = function (c, t) { limiter = rateLimit(c, t) }
+module.exports.clearLimiter = function () { limiter = null }
