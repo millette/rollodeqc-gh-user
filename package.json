@@ -1,0 +1,43 @@
+{
+  "name": "rollodeqc-gh-user",
+  "version": "0.0.0",
+  "description": "RoLLodeQc utility to fetch a single GitHub user.",
+  "license": "AGPL-3.0",
+  "repository": "millette/rollodeqc-gh-user",
+  "author": {
+    "name": "Robin Millette",
+    "email": "robin@millette.info",
+    "url": "http://robin.millette.info"
+  },
+  "engines": {
+    "node": ">=4.3.1"
+  },
+  "scripts": {
+    "test": "standard && nyc ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "rollodeqc",
+    "github",
+    "gh",
+    "user",
+    "username",
+    "info"
+  ],
+  "dependencies": {
+    "gh-got": "^3.0.0",
+    "rate-limit-promise": "^1.0.2",
+    "rollodeqc-gh-utils": "^0.2.0"
+  },
+  "devDependencies": {
+    "ava": "^0.12.0",
+    "babel-eslint": "^6.0.0",
+    "nyc": "^6.1.1",
+    "standard": "^6.0.8"
+  },
+  "standard": {
+    "parser": "babel-eslint"
+  }
+}
