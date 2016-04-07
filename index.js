@@ -27,20 +27,22 @@ const rateLimit = require('rate-limit-promise')
 // own
 const utils = require('rollodeqc-gh-utils')
 
-let limiter
-
-module.exports = function (z) {
-  if (!limiter) { module.exports.setLimiter(5, 3600) }
-  return limiter()
-    .then(() => ghGot('users/' + z))
-    .then((u) => {
-      const o = utils.chosenFields(u.body)
-      o.headers = utils.chosenHeaders(u.headers)
-      return o
+module.exports = function () {
+  return utils.rateLimit()
+    .then((rl) => {
+      const limiter = rateLimit(5, Math.ceil(5 * (1000 * rl.rate.reset - Date.now()) / rl.rate.remaining))
+      return function (z) {
+        return limiter()
+          .then(() => ghGot('users/' + z))
+          .then((u) => {
+            const o = utils.chosenFields(u.body)
+            o.headers = utils.chosenHeaders(u.headers)
+            return o
+          })
+      }
     })
 }
 
-module.exports.setLimiter = function (c, t) {
-  console.log('setting limiter to', c, t)
-  limiter = rateLimit(c, t)
-}
+// module.exports.setLimiter = function (c, t) {
+  // console.log('setting limiter to', c, t)
+// }
