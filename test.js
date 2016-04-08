@@ -3,6 +3,12 @@
 import test from 'ava'
 import fn from './'
 
+console.log('#1')
+
+setInterval(function () {
+  console.log('oh my')
+}, 1000)
+
 /*
 test('no init', async t => {
   const result = await fn('yannicklux')
@@ -19,10 +25,18 @@ test('init', async t => {
 */
 
 test('init', async t => {
-  fn.setLimiter(1, 60000)
+  console.log('#2')
+  fn.setLimiter(1, 10000)
   Promise.all([fn('yannicklux'), fn('YannickKatambo')])
     .then(x => {
+      console.log('#3')
+      console.log('XXX:', x.length)
       t.is(x[0].login, 'yannicklux')
       t.is(x[1].login, 'YannickKatambo')
     })
+    .catch(e => {
+      console.log('e:', e)
+    })
 })
+
+console.log('#4')
