@@ -40,16 +40,14 @@ const getUser = function (username) {
 let limiter
 
 module.exports = function (username) {
-  console.log(new Date(), 'calling')
+  // console.log(new Date(), 'calling')
   if (limiter) { return limiter().then(() => getUser(username)) }
-/*
   return utils.rateLimit()
     .then((rl) => {
-      console.log(new Date(), 'ratelimit')
+      // console.log(new Date(), 'ratelimit')
       limiter = rateLimit(5, Math.ceil(5 * (1000 * rl.rate.reset - Date.now()) / rl.rate.remaining))
       return limiter().then(() => getUser(username))
     })
-*/
 }
 
 module.exports.setLimiter = function (c, t) { limiter = rateLimit(c, t) }
