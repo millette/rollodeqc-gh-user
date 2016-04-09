@@ -27,23 +27,38 @@ const rateLimit = require('rate-limit-promise')
 // own
 const utils = require('rollodeqc-gh-utils')
 
-const getUser = function (username) {
-  return ghGot('users/' + username)
+const getUser = function (username, store) {
+  let opts
+  if (store[username] && store[username].headers && store[username].headers.etag) {
+    opts = { headers: { 'if-none-match': store[username].headers.etag } }
+  }
+  // console.log('MYOPTS', JSON.stringify(opts))
+  return ghGot('users/' + username, opts)
     .then((u) => {
       const o = utils.chosenFields(u.body)
       o.headers = utils.chosenHeaders(u.headers)
+      // console.log('OOOO:', JSON.stringify(o))
+      store[username] = o
       return o
+    })
+    .catch((e) => {
+      if (e.statusCode === 304) {
+        return store[username]
+      }
+      return Promise.reject(e)
+      // console.log('ahum...', e.statusCode, e)
     })
 }
 
 let limiter
 
-module.exports = function (username) {
-  if (limiter) { return limiter().then(() => getUser(username)) }
+module.exports = function (username, store) {
+  if (typeof store !== 'object') { store = {} }
+  if (limiter) { return limiter().then(() => getUser(username, store)) }
   return utils.rateLimit()
     .then((rl) => {
       limiter = rateLimit(5, Math.ceil(5 * (1000 * rl.rate.reset - Date.now()) / rl.rate.remaining))
-      return limiter().then(() => getUser(username))
+      return limiter().then(() => getUser(username, store))
     })
 }
 
