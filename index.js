@@ -57,10 +57,17 @@ module.exports = function (username, store) {
   if (limiter) { return limiter().then(() => getUser(username, store)) }
   return utils.rateLimit()
     .then((rl) => {
-      limiter = rateLimit(5, Math.ceil(5 * (1000 * rl.rate.reset - Date.now()) / rl.rate.remaining))
+      const l2 = Math.ceil(5 * (1000 * rl.rate.reset - Date.now()) / rl.rate.remaining)
+      // limiter = rateLimit(5, l2)
+      limiter = module.exports.setLimiter(5, l2)
+      // console.log('limiter set to 5,', l2)
       return limiter().then(() => getUser(username, store))
     })
 }
 
-module.exports.setLimiter = function (c, t) { limiter = rateLimit(c, t) }
 module.exports.clearLimiter = function () { limiter = null }
+
+module.exports.setLimiter = function (c, t) {
+  limiter = rateLimit(c, t)
+  return limiter
+}
