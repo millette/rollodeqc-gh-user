@@ -1,4 +1,4 @@
-# rollodeqc-gh-user
+# rollodeqc-gh-user [![Build Status](https://travis-ci.org/millette/rollodeqc-gh-user.svg?branch=master)](https://travis-ci.org/millette/rollodeqc-gh-user)
 > RoLLodeQc utility to fetch a single GitHub user.
 
 ## Install
