@@ -27,7 +27,7 @@
     "info"
   ],
   "dependencies": {
-    "gh-got": "^3.0.0",
+    "gh-got": "^4.0.0",
     "rate-limit-promise": "^1.0.2",
     "rollodeqc-gh-utils": "^0.3.0"
   },
