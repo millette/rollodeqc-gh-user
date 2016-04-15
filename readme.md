@@ -1,4 +1,4 @@
-# rollodeqc-gh-user [![Build Status](https://travis-ci.org/millette/rollodeqc-gh-user.svg?branch=master)](https://travis-ci.org/millette/rollodeqc-gh-user)
+# rollodeqc-gh-user [![Build Status](https://travis-ci.org/millette/rollodeqc-gh-user.svg?branch=master)](https://travis-ci.org/millette/rollodeqc-gh-user) [![Coverage Status](https://coveralls.io/repos/github/millette/rollodeqc-gh-user/badge.svg?branch=master)](https://coveralls.io/github/millette/rollodeqc-gh-user?branch=master)
 > RoLLodeQc utility to fetch a single GitHub user.
 
 ## Install
