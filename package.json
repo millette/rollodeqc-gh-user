@@ -1,6 +1,6 @@
 {
   "name": "rollodeqc-gh-user",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "RoLLodeQc utility to fetch a single GitHub user.",
   "license": "AGPL-3.0",
   "repository": "millette/rollodeqc-gh-user",
@@ -35,10 +35,10 @@
     "rollodeqc-gh-utils": "^0.3.0"
   },
   "devDependencies": {
-    "ava": "^0.12.0",
-    "babel-eslint": "^6.0.0",
+    "ava": "^0.14.0",
+    "babel-eslint": "^6.0.3",
     "coveralls": "^2.11.9",
-    "nyc": "^6.1.1",
+    "nyc": "^6.4.2",
     "standard": "^6.0.8"
   },
   "standard": {
