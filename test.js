@@ -51,7 +51,7 @@ test.serial('store', async t => {
         'x-ratelimit-limit': 5000,
         'x-ratelimit-remaining': 4692,
         'x-ratelimit-reset': 1459978980,
-        'etag': 'W/\"95b59ee62d0f10ea9170a718ce2352ab\"',
+        'etag': 'W/"95b59ee62d0f10ea9170a718ce2352ab"',
         'timestamp': 1459975954,
         'timestampDiff': 1.35,
         'statusCode': 200
@@ -82,7 +82,7 @@ test.serial('store', async t => {
         'x-ratelimit-limit': 5000,
         'x-ratelimit-remaining': 4690,
         'x-ratelimit-reset': 1459978980,
-        'etag': 'W/\"54d780b032ec3171583c13352a7dbc0a\"',
+        'etag': 'W/"54d780b032ec3171583c13352a7dbc0a"',
         'timestamp': 1459975955,
         'timestampDiff': 2.32,
         'statusCode': 200
