@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // npm
 const ghGot = require('gh-got')
 const rateLimit = require('rate-limit-promise')
+const omitBy = require('lodash.omitby')
 
 // own
 const utils = require('rollodeqc-gh-utils')
@@ -32,22 +33,15 @@ const getUser = function (username, store) {
   if (store[username] && store[username].headers && store[username].headers.etag) {
     opts = { headers: { 'if-none-match': store[username].headers.etag } }
   }
-  // console.log('MYOPTS', JSON.stringify(opts))
   return ghGot('users/' + username, opts)
     .then((u) => {
-      const o = utils.chosenFields(u.body)
+      let o = utils.chosenFields(u.body)
       o.headers = utils.chosenHeaders(u.headers)
-      // console.log('OOOO:', JSON.stringify(o))
+      o = omitBy(o, (d) => !d)
       store[username] = o
       return o
     })
-    .catch((e) => {
-      if (e.statusCode === 304) {
-        return store[username]
-      }
-      return Promise.reject(e)
-      // console.log('ahum...', e.statusCode, e)
-    })
+    .catch((e) => e.statusCode === 304 ? store[username] : Promise.reject(e))
 }
 
 let limiter
@@ -58,9 +52,7 @@ module.exports = function (username, store) {
   return utils.rateLimit()
     .then((rl) => {
       const l2 = Math.ceil(5 * (1000 * rl.rate.reset - Date.now()) / rl.rate.remaining)
-      // limiter = rateLimit(5, l2)
       limiter = module.exports.setLimiter(5, l2)
-      // console.log('limiter set to 5,', l2)
       return limiter().then(() => getUser(username, store))
     })
 }
