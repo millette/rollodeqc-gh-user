@@ -9,6 +9,7 @@
     "email": "robin@millette.info",
     "url": "http://robin.millette.info"
   },
+  "bin": "cli.js",
   "engines": {
     "node": ">=4"
   },
@@ -18,9 +19,12 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "cli.js"
   ],
   "keywords": [
+    "cli-app",
+    "cli",
     "rollodeqc",
     "github",
     "gh",
