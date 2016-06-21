@@ -1,2 +1,12 @@
 node_modules
 .nyc_output
+data-mirego.json
+members
+members-r
+npm-debug.log
+org-full-mirego.json
+org-mirego.json
+public_members
+public_members-r
+user-jipi.json
+user-millette.json
