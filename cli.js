@@ -26,6 +26,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // npm
 const meow = require('meow')
 const omitBy = require('lodash.omitby')
+const updateNotifier = require('update-notifier')
+
+updateNotifier({ pkg: require('./package.json') }).notify()
 
 // self
 const rollodeqcGhUser = require('./')

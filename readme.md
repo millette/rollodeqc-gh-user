@@ -4,6 +4,16 @@
 [![Dependency Status](https://gemnasium.com/badges/github.com/millette/rollodeqc-gh-user.svg)](https://gemnasium.com/github.com/millette/rollodeqc-gh-user)
 > RoLLodeQc utility to fetch a single GitHub user.
 
+## New since version 0.2.0
+The cli now uses [update-notifier][] to let the user know about updates to this program.
+
+Users have the ability to opt-out of the update notifier by changing
+the optOut property to true in ~/.config/configstore/update-notifier-rollodeqc-gh-user-streak.json.
+The path is available in notifier.config.path.
+
+Users can also opt-out by setting the environment variable NO_UPDATE_NOTIFIER
+with any value or by using the --no-update-notifier flag on a per run basis.
+
 ## Install
 ```
 $ npm install --save rollodeqc-gh-user
@@ -34,3 +44,5 @@ Lorem ipsum.
 
 ## License
 AGPL-v3 © [Robin Millette](http://robin.millette.info)
+
+[update-notifier]: <https://github.com/yeoman/update-notifier>
