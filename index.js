@@ -51,7 +51,7 @@ module.exports = function (username, store) {
   if (limiter) { return limiter().then(() => getUser(username, store)) }
   return utils.rateLimit()
     .then((rl) => {
-      const l2 = Math.ceil(5 * (1000 * rl.rate.reset - Date.now()) / rl.rate.remaining)
+      const l2 = Math.ceil(5 * ((1000 * rl.rate.reset) - Date.now()) / rl.rate.remaining)
       limiter = module.exports.setLimiter(5, l2)
       return limiter().then(() => getUser(username, store))
     })
