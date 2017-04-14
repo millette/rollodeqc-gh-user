@@ -16,7 +16,7 @@ test.serial('init', async t => {
   t.is(result.login, 'YannickKatambo')
 })
 
-test.serial('all', async t => {
+test.skip('all', async t => {
   fn.setLimiter(1, 2500)
   const x = await Promise.all([fn('yannicklux'), fn('YannickKatambo')])
   t.is(x[0].login, 'yannicklux')
@@ -93,4 +93,4 @@ test.serial('store', async t => {
   t.is(result.login, 'Veronique')
 })
 
-test.serial('404', async t => await t.throws(fn('Vero666nique'), 'Response code 404 (Not Found)'))
+test.serial('404', t => t.throws(fn('Vero666nique'), 'Response code 404 (Not Found)'))
