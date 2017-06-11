@@ -38,7 +38,7 @@
     "meow": "^3.7.0",
     "rate-limit-promise": "^1.0.2",
     "rollodeqc-gh-utils": "^0.3.4",
-    "update-notifier": "^2.1.0"
+    "update-notifier": "^2.2.0"
   },
   "devDependencies": {
     "ava": "^0.19.1",
