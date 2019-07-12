@@ -32,19 +32,19 @@ updateNotifier({ pkg: require('./package.json') }).notify()
 // self
 const rollodeqcGhUser = require('./')
 
-const cli = meow([
-  'Usage',
-  '  $ rollodeqc-gh-user [input]',
-  '',
-  'Options',
-  '  --foo  Lorem ipsum. [Default: false]',
-  '',
-  'Examples',
-  '  $ rollodeqc-gh-user',
-  '  unicorns & rainbows',
-  '  $ rollodeqc-gh-user ponies',
-  '  ponies & rainbows'
-])
+const cli = meow(`
+  Usage
+    $ rollodeqc-gh-user [input]
+  
+  Options
+    --foo  Lorem ipsum. [Default: false]
+  
+  Examples
+    $ rollodeqc-gh-user
+    unicorns & rainbows
+    $ rollodeqc-gh-user ponies
+    ponies & rainbows
+`)
 
 // console.log(rollodeqcGhUserEvents(cli.input[0] || 'unicorns'))
 
