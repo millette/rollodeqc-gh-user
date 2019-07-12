@@ -33,7 +33,7 @@
     "info"
   ],
   "dependencies": {
-    "gh-got": "^5.0.0",
+    "gh-got": "^8.1.0",
     "lodash.omitby": "^4.6.0",
     "meow": "^3.7.0",
     "rate-limit-promise": "^1.0.2",
