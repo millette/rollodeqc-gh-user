@@ -35,7 +35,7 @@
   "dependencies": {
     "gh-got": "^8.1.0",
     "lodash.omitby": "^4.6.0",
-    "meow": "^3.7.0",
+    "meow": "^5.0.0",
     "rate-limit-promise": "^1.0.2",
     "rollodeqc-gh-utils": "^1.0.0",
     "update-notifier": "^3.0.1"
