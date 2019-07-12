@@ -93,4 +93,4 @@ test.serial('store', async t => {
   t.is(result.login, 'Veronique')
 })
 
-test.serial('404', t => t.throwsAsync(fn('Vero666nique'), 'Response code 404 (Not Found)'))
+test.serial('404', t => t.throwsAsync(fn('Vero666nique'), 'Not Found (404)'))
